@@ -22,8 +22,8 @@ btn2.pull = Pull.UP
 board1 = PicoRobotics.KitronikPicoRobotics()
 directions = ["f","r"]
 
-MAX=24500
-MIN=23500
+MAX=25500
+MIN=35500
 MAXVALUE=
 MINVALUE=
 class joy:
@@ -39,40 +39,24 @@ class joy:
         if self.up_down.value > MAX :
                 if self.left_right.value > MAX :
                     print("joystick is down and right")
-                    board1.motorOn(3, "r", (MAXVALUE-self.up_down.value)/(MAXVALUE-MAX)*100)
-                    board1.motorOn(1, "f", (MAXVALUE-self.left_right.value)/(MAXVALUE-MAX)*100)
                 elif self.left_right.value < MIN :
                     print("joystick is down and left")
-                    board1.motorOn(3, "r", (MAXVALUE-self.up_down.value)/(MAXVALUE-MAX)*100)
-                    board1.motorOn(1, "r", (MIN-self.left_right.value)/(MIN-MINVALUE)*100)
                 else :
                     print("joystick is down ")
-                    board1.motorOn(3, "r", (MAXVALUE-self.up_down.value)/(MAXVALUE-MAX)*100)
         elif self.up_down.value < MIN :
                 if self.left_right.value > MAX :
                     print("joystick is up and right")
-                    board1.motorOn(3, "f", (MIN-self.up_down.value)/(MIN-MINVALUE)*100)
-                    board1.motorOn(1, "f", (MAXVALUE-self.left_right.value)/(MAXVALUE-MAX)*100)
                 elif self.left_right.value <MIN :
                     print("joystick is up and left")
-                    board1.motorOn(3, "f", (MIN-self.up_down.value)/(MIN-MINVALUE)*100)
-                    board.motorOn(1, "r", (MIN-self.left_right.value)/(MIN-MINVALUE)*100)
                 else :
                     print("joystick is up ")
-                    board1.motorOn(3, "f", (MIN-self.up_down.value)/(MIN-MINVALUE)*100)
         else :
             if self.left_right.value > MAX :
                 print("joystick is right ")
-                board1.motorOn(1, "f", (MAXVALUE-self.left_right.value)/(MAXVALUE-MAX)*100)
             elif self.left_right.value > MIN :
                 print("joystick is stable ")
-                board1.motorOn(1, "r", 0)
-                board1.motorOn(2, "r", 0)
-                board1.motorOn(3, "r", 0)
             else :
-                print("joystick is left ")
-                board1.motorOn(1, "r", (MIN-self.left_right.value)/(MIN-MINVALUE)*100)
-                
+                print("joystick is left ")                
         if self.theta.value > MAX :
             print("joystick rotate right")
         elif self.theta.value < MIN :
@@ -105,13 +89,10 @@ while True:
     if not btn1.value:
         print("zoom in")
         print(btn1.value)
-        board1.motorOn(2, "f", 70)
         time.sleep(0.2)
     if not btn2.value:
         print("zoom out")
         print(btn2.value)
-        board1.motorOn(2, "r", 70)
         time.sleep(0.2)
     if (btn1.value and btn2.value):
-        board1.motorOn(2, "f", 0)
     time.sleep(0.01)
