@@ -32,8 +32,8 @@ Vit = 70
 limit_switch_1_fw_pin = board.GP3
 limit_switch_1_rv_pin = board.GP2
 
-limit_switch_2_fw_pin = board.GP5
-limit_switch_2_rv_pin = board.GP6
+limit_switch_2_fw_pin = board.GP12
+limit_switch_2_rv_pin = board.GP13
 
 limit_switch_3_fw_pin = board.GP7
 limit_switch_3_rv_pin = board.GP10
@@ -65,24 +65,24 @@ def check_limit_switches():
         board1.motorOn(1, "f", 0)  # Stop motor 1
         
     if not limit_switch_1_rv.value:
-        print("Limit reverse switch is triggered")
+        print("Limit reverse switch 1 is triggered")
         board1.motorOn(1, "r", 0)  # Stop motor 1
 
-if not limit_switch_2_fw.value:
-        print("Limit forward switch 1 is triggered")
-        board1.motorOn(1, "f", 0)  # Stop motor 1
+    if not limit_switch_2_fw.value:
+        print("Limit forward switch 2 is triggered")
+        board1.motorOn(2, "f", 0)  # Stop motor 1
         
-    if not limit_switch_2_rv.value:
-        print("Limit reverse switch is triggered")
-        board1.motorOn(1, "r", 0)  # Stop motor 1
+    if not  limit_switch_2_rv.value:
+        print("Limit reverse switch 2 is triggered")
+        board1.motorOn(2, "r", 0)  # Stop motor 1
 
-if not limit_switch_3_fw.value:
-        print("Limit forward switch 1 is triggered")
-        board1.motorOn(1, "f", 0)  # Stop motor 1
+    if not limit_switch_3_fw.value:
+        print("Limit forward switch 3 is triggered")
+        board1.motorOn(3, "f", 0)  # Stop motor 1
         
     if not limit_switch_3_rv.value:
-        print("Limit reverse switch is triggered")
-        board1.motorOn(1, "r", 0)  # Stop motor 1
+        print("Limit reverse switch 3 is triggered")
+        board1.motorOn(3, "r", 0)  # Stop motor 1
 
     
 #     print("limit1_rv")
